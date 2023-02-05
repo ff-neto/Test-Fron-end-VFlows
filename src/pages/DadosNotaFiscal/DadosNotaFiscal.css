@@ -1,0 +1,36 @@
+body {
+    background-color: rgb(239, 240, 226);
+}
+
+.larguraDaPagina {
+    width: 100%;
+}
+
+.borderr {
+    border: 1px solid red;
+    border-radius: 8px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.container-filho{
+    display: flex;
+    justify-content: space-between;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-container {
+    width: 62vh;
+}
+
+.centro{
+    margin: auto;
+}

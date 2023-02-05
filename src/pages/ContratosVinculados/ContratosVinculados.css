@@ -1,0 +1,45 @@
+body {
+    background-color: rgb(239, 240, 226);
+}
+
+.larguraDaPagina {
+    width: 100%;
+}
+
+.borderr {
+    border: 1px solid red;
+    border-radius: 8px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.container-filho{
+    display: flex;
+    justify-content: space-between;
+}
+
+table {
+    border-collapse: separate;
+}
+
+th, td {
+    text-align: center;
+    padding: 7px;
+}
+
+.alterado {
+    text-align: left;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+}
+
+.centro{
+    margin: auto;
+}
