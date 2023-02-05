@@ -1,11 +1,11 @@
 <img alt="VFlows" title="VFlows" src="https://user-images.githubusercontent.com/60360540/216827212-453e255d-60f8-4110-b322-35da5410d38a.png" width="200px"  style="background:#373435; padding:16px;"/>
 <br><br>
 
-<h3 align="center">
+<h3>
   Desafio Front-End
 </h3>
 
-<blockquote align="center">Tecnologia que flui!</blockquote>
+<blockquote>Tecnologia que flui!</blockquote>
 <br>
 
 # Sobre o Projeto
