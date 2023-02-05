@@ -1,13 +1,6 @@
 <img alt="VFlows" title="VFlows" src="https://user-images.githubusercontent.com/60360540/216827212-453e255d-60f8-4110-b322-35da5410d38a.png" width="200px"  style="background:#373435; padding:16px;"/>
 <br><br>
 
-<h3>
-  Desafio Front-End
-</h3>
-
-<blockquote>Tecnologia que flui!</blockquote>
-<br>
-
 # Sobre o Projeto
 
 O objetivo deste desafio é avaliar seus conhecimentos técnicos, como lida com os requisitos e capacidade de pensar em soluções.
