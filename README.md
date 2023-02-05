@@ -79,6 +79,7 @@ Você deve ter algumas dependências para executar o programa:
 O usuário que estiver acessando essa página deverá conseguir informar os seguintes campos:
 
 - campo **CNPJ**, com máscara de CNPJ ao digitar, e deverá ser um CNPJ válido. ✔️
+    - `CNPJ válido - [ 69.124.155/0001-36, 98.262.700/0001-59, 50.843.547/0001-27 ];`
 
 - botão “Acessar”. ✔️
 
