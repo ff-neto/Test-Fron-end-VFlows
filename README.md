@@ -40,8 +40,11 @@ Você deve ter algumas dependências para executar o programa:
     ```shell
     HTTPS -> $ git clone https://github.com/ff-neto/Test-Fron-end-VFlows.git
     ```
-
-2. Instale ás dependências:
+2. Entrar na pasta do projeto:
+    ```shell
+    $ cd Test-Fron-end-VFlows
+    ```
+3. Instale ás dependências:
     ```shell
     $ npm install
     ```
