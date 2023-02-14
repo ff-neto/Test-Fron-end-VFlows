@@ -4,8 +4,6 @@ const Auth = createContext(null)
 
 const AuthContext = ({children}) => {
     const [user,setUser] = useState({})
-    // REFATORAR DEPOIS PARA UM OUTRO CONTEXT -> PASSAR DENTRO DO CONTEXTO DE AUTH
-    const [contratoSelecionado,setContratoSelecionado] = useState({})
 
     const whoAmi = () => {
         return user;
@@ -15,7 +13,7 @@ const AuthContext = ({children}) => {
         setUser(newUser)
     }
 
-    return <Auth.Provider value={{whoAmi,handleChangeUser,setContratoSelecionado,contratoSelecionado}}>{children}</Auth.Provider>
+    return <Auth.Provider value={{whoAmi,handleChangeUser}}>{children}</Auth.Provider>
 }
 
 function useAuth() {

@@ -1,27 +1,52 @@
 import './ContratosVinculados.css'
 import Logo from "../../assets/img/logo.png"
 import Lupa from "../../assets/img/lupa.png"
-import {useAuth} from '../../context/auth/auth.context'
+import { useAuth } from '../../context/auth/auth.context'
+import { useContrato } from '../../context/contract/contract.context'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import Modal from 'react-modal';
+import React from 'react'
+
+const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
 
 function ContratosVinculados() {
-    const {whoAmi,setContratoSelecionado} = useAuth()
+    const { whoAmi } = useAuth()
+    const {setContratoSelecionado} = useContrato()
     const navigate = useNavigate()
-    const [contrato,setContrato] = useState([])
-    const [error,setError] = useState('')
-    
-    
+    const [contrato, setContrato] = useState([])
+    const [error, setError] = useState('')
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [modalInfo,setModalInfo] =useState({})
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
     const handleClick = () => {
-        console.log(contrato)
-        if(contrato.length > 1) {
+        if (contrato.length > 1) {
             setError('Somente um Contrato deverá ser selecionado')
             return;
         }
-        if(contrato.length === 0) {
+
+        if (contrato.length === 0) {
             setError('Ao menos um Contrato deverá ser selecionado')
             return;
         }
+
         setContratoSelecionado(contrato[0])
         navigate('/dados-nota-fiscal')
     }
@@ -45,34 +70,37 @@ function ContratosVinculados() {
                 <div className="borderr flex flex-col p-0.5 mt-5 text-center">
                     <h3 className="p-2">Contratos Vinculados</h3>
                 </div>
-                    <table class="table-auto mt-5">
-                        <thead>
-                            <tr>
-                                <th>Nome do Contrato</th>
-                                <th>Código do contrato</th>
-                                <th>Retenção Técnica</th>
-                                <th>Detalhes</th>
+                <table class="table-auto mt-5">
+                    <thead>
+                        <tr>
+                            <th>Nome do Contrato</th>
+                            <th>Código do contrato</th>
+                            <th>Retenção Técnica</th>
+                            <th>Detalhes</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        {whoAmi()?.listContracts?.map((contract, key) => (
+                            <tr key={key} className="bg-zinc-200">
+                                <td className="alterado ">
+                                    <input type="checkbox" onClick={() => setContrato(old => {
+                                        if (old.find(c => c.id === contract.id)) {
+                                            return old.filter(c => c.id !== contract.id)
+                                        }
+                                        return [...old, contract]
+                                    })} />
+                                    {contract.name}
+                                </td>
+                                <td>{contract.code}</td>
+                                <td className="bg-sky-600">{contract.percent}</td>
+                                <td><button onClick={() => {
+                                    setModalInfo(contract)
+                                    openModal()
+                                }} className="w-12 h-8 bg-sky-600 rounded"><img className="w-5 h-5 centro" alt="lupa" src={Lupa}></img></button></td>
                             </tr>
-                        </thead>
-                        <tbody >
-                            {whoAmi()?.listContracts?.map((contract,key) => (
-                                <tr key={key} className="bg-zinc-200">
-                                    <td className="alterado ">
-                                        <input type="checkbox" onClick={() => setContrato(old => {
-                                            if(old.find(c => c.id === contract.id)) {
-                                                return old.filter(c => c.id !== contract.id)
-                                            }
-                                            return [...old, contract]
-                                        })}/>
-                                        {contract.name}
-                                    </td>
-                                    <td>{contract.code}</td>
-                                    <td className="bg-sky-600">{contract.percent}</td>
-                                    <td><button className="w-12 h-8 bg-sky-600 rounded"><img className="w-5 h-5 centro" alt="lupa" src={Lupa}></img></button></td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                        ))}
+                    </tbody>
+                </table>
                 <div className="flex flex-row-reverse b-16 div-bot">
                     <button onClick={() => handleClick()} className="flex flex-row-reverse bg-green-500 mt-6 p-0.5 px-20 text-zinc-50 ml-3" type="button">Próximo</button>
                     <button onClick={() => navigate('/')} className="flex flex-row-reverse bg-amber-400 mt-6 p-0.5 px-20 text-zinc-50 ml-3" type="button">Anterior</button>
@@ -84,7 +112,18 @@ function ContratosVinculados() {
                         <p className="text-center ">&copy;2022-2022 Construido Patrimônios</p>
                     </div>
                 </footer>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    ariaHideApp={false}
+                >
+                    <h1>Nome: <span>{modalInfo.name}</span></h1>
+                    <h1>Codigo: <span>{modalInfo.code}</span></h1>
+                    <h1>Percentual: <span>{modalInfo.percent}%</span></h1>
+                </Modal>
             </div>
+
         </div>
     )
 }
